@@ -52,6 +52,20 @@ define(function (require, exports, module) {
         return fileNameWithoutExtension;
     }
 
+    // Get the font format based on file extension
+    function _getFontFormat(file) {
+        var ext = Path.extname(file.name).toLowerCase();
+        switch (ext) {
+            case '.woff': return 'woff';
+            case '.woff2': return 'woff2';
+            case '.ttf': return 'truetype';
+            case '.otf': return 'opentype';
+            case '.eot': return 'embedded-opentype';
+            case '.svg': return 'svg';
+            default: return 'woff'; // fallback
+        }
+    }
+
     // Get a URL out of the cache
     function _getUrl(path) {
         return UrlCache.getUrl(path);
@@ -67,6 +81,8 @@ define(function (require, exports, module) {
         this.file       = file;
         this.$container = $container;
         this.relPath    = ProjectManager.makeProjectRelativeIfPossible(this.file.fullPath);
+        this.fontName   = _getFontName(this.file);
+        this.fontFormat = _getFontFormat(this.file);
 
         this._buildPage(this.file, this.$container, false);
 
@@ -89,11 +105,12 @@ define(function (require, exports, module) {
         }
 
         this.$el     = $(Mustache.render(FontHolderTemplate, {
-            url      : _getUrl(this.file.fullPath),
-            relPath  : this.relPath,
-            fontName : _getFontName(this.file),
-            now      : new Date().valueOf(),
-            Strings  : Strings
+            url        : _getUrl(this.file.fullPath),
+            relPath    : this.relPath,
+            fontName   : this.fontName,
+            fontFormat : this.fontFormat,
+            now        : new Date().valueOf(),
+            Strings    : Strings
         }));
 
         $container.append(this.$el);
@@ -189,7 +206,7 @@ define(function (require, exports, module) {
         noCacheUrl = noCacheUrl + "?ver=" + now;
 
         // Update the DOM node with the src URL
-        this.$fontFace.html("@font-face {font-family:'FontDisplay';src: url('" + noCacheUrl + "');}");
+        this.$fontFace.html("@font-face {font-family:'" + this.fontName + "';src: url('" + noCacheUrl + "') format('" + this.fontFormat + "');} @font-face {font-family:'" + this.fontName + "';src: url('" + noCacheUrl + "') format('" + this.fontFormat + "');font-weight: bold;} @font-face {font-family:'" + this.fontName + "';src: url('" + noCacheUrl + "') format('" + this.fontFormat + "');font-style: italic;}");
         this._updateStats();
     };
 

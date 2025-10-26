@@ -3,7 +3,17 @@
     <style class="font-face" data-src="{{{url}}}?ver={{now}}">
         @font-face {
             font-family: {{ fontName }};
-            src: url("{{{url}}}?ver={{now}}");
+            src: url("{{{url}}}?ver={{now}}") format("{{fontFormat}}");
+        }
+        @font-face {
+            font-family: {{ fontName }};
+            src: url("{{{url}}}?ver={{now}}") format("{{fontFormat}}");
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: {{ fontName }};
+            src: url("{{{url}}}?ver={{now}}") format("{{fontFormat}}");
+            font-style: italic;
         }
 
         .font-display-{{ fontName }} {
@@ -28,7 +38,17 @@
         <pre>
 @font-face {
   font-family: "{{fontName}}";
-  src: url("{{{relPath}}}");
+  src: url("{{{relPath}}}") format("{{fontFormat}}");
+}
+@font-face {
+  font-family: "{{fontName}}";
+  src: url("{{{relPath}}}") format("{{fontFormat}}");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "{{fontName}}";
+  src: url("{{{relPath}}}") format("{{fontFormat}}");
+  font-style: italic;
 }
 
 p {
