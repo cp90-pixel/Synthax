@@ -5,23 +5,23 @@ platform=`uname -s`;
 if [[ "$platform" == 'Linux' ]]; then
    # This is the default directory for Ubuntu installations (if installed with the *.deb).
    # May have to adjust if other operating systems use different directories.
-   default_app_directory='/opt/brackets';
+   default_app_directory='/opt/synthax';
    symlink='dev';
 elif [[ "$platform" == 'Darwin' ]]; then # MAC OSX
-   default_app_directory='/Applications/Brackets.app';
+   default_app_directory='/Applications/Synthax.app';
    symlink='Contents/dev';
 else
    # Warn for unknown operating system?
-   default_app_directory='/opt/brackets';
+   default_app_directory='/opt/synthax';
    symlink='dev';
 fi
 
 # Make sure the appname was passed in and is valid
 if [[ ${1} == "" ]]; then
   echo "Usage: setup_for_hacking.sh <application>"
-  echo "Setup Brackets to use the HTML/CSS/JS files pulled from GitHub."
+  echo "Setup Synthax to use the HTML/CSS/JS files pulled from GitHub."
   echo ""
-  echo "Parameters: application - full path to the Brackets application"
+  echo "Parameters: application - full path to the Synthax application"
   echo "Example: ./setup_for_hacking.sh \"$default_app_directory\""
   exit 0;
 fi
@@ -51,5 +51,5 @@ fi
 # Make new symlink
 ln -s "$root_dir" "$link_name" || exit 1;
 
-echo "Brackets will now use the files in $root_dir"
+echo "Synthax will now use the files in $root_dir"
 echo "Run the restore_installed_build.sh script to revert back to the installed source files"

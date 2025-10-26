@@ -23,7 +23,7 @@ GOTO Exit
 
 :Error
 ECHO Usage: setup_server_smokes.bat server_root_path
-ECHO Setup local server to access Brackets server smoke test files from GitHub
+ECHO Setup local server to access Synthax server smoke test files from GitHub
 ECHO Parameters: server_root_path - local file path to server root folder
 ECHO Example: setup_server_smokes.bat "c:\wamp\www"
 GOTO Exit

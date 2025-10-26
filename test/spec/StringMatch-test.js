@@ -553,9 +553,9 @@ define(function (require, exports, module) {
                     ]
                 };
 
-                expect(stringMatch("brackets/utils/brackets.js", "brack")).toEqual(expectedResult);
+                expect(stringMatch("synthax/utils/synthax.js", "synth")).toEqual(expectedResult);
 
-                expect(stringMatch("brackets/utils/brackets.js", "brack", { segmentedSearch: false })).toEqual(expectedResult);
+                expect(stringMatch("synthax/utils/synthax.js", "synth", { segmentedSearch: false })).toEqual(expectedResult);
             });
 
             it("should handle slash after separator the right way", function () {
@@ -916,12 +916,12 @@ define(function (require, exports, module) {
                     segmentedSearch: false
                 });
 
-                expect(matcher.match("brackets/utils/brackets.js", "brack")).toEqual({
+                expect(matcher.match("synthax/utils/synthax.js", "synth")).toEqual({
                     matchGoodness: jasmine.any(Number),
-                    label: "brackets/utils/brackets.js",
+                    label: "synthax/utils/synthax.js",
                     stringRanges: [
-                        { text: "brack", matched: true, includesLastSegment: true },
-                        { text: "ets/utils/brackets.js", matched: false, includesLastSegment: true }
+                        { text: "synth", matched: true, includesLastSegment: true },
+                        { text: "ax/utils/synthax.js", matched: false, includesLastSegment: true }
                     ]
                 });
 
@@ -929,13 +929,13 @@ define(function (require, exports, module) {
                     segmentedSearch: true
                 });
 
-                expect(matcher.match("brackets/utils/brackets.js", "brack")).toEqual({
+                expect(matcher.match("synthax/utils/synthax.js", "synth")).toEqual({
                     matchGoodness: jasmine.any(Number),
-                    label: "brackets/utils/brackets.js",
+                    label: "synthax/utils/synthax.js",
                     stringRanges: [
-                        { text: "brackets/utils/", matched: false, includesLastSegment: false },
-                        { text: "brack", matched: true, includesLastSegment: true },
-                        { text: "ets.js", matched: false, includesLastSegment: true }
+                        { text: "synthax/utils/", matched: false, includesLastSegment: false },
+                        { text: "synth", matched: true, includesLastSegment: true },
+                        { text: "ax.js", matched: false, includesLastSegment: true }
                     ]
                 });
             });

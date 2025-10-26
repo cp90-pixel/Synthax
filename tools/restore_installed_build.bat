@@ -11,8 +11,8 @@ GOTO Exit
 
 :Error
 ECHO Usage: restore_installed_build.bat application_path
-ECHO Restore Brackets to use the installed HTML/CSS/JS files.
-ECHO Parameters: application_path - path that contains the Brackets application
-ECHO Example: restore_installed_build.bat "c:\Program Files (x86)\Brackets"
+ECHO Restore Synthax to use the installed HTML/CSS/JS files.
+ECHO Parameters: application_path - path that contains the Synthax application
+ECHO Example: restore_installed_build.bat "c:\Program Files (x86)\Synthax"
 
 :Exit

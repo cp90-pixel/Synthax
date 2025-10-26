@@ -246,7 +246,7 @@ define(function (require, exports, module) {
                 }
             });
 
-            // Issue #10183 -- Brackets writing to filtered directories could cause them to appear
+            // Issue #10183 -- Synthax writing to filtered directories could cause them to appear
             // in the file tree
             it("should not display excluded entry when resolved and written to", function () {
                 var opFailed = false,
@@ -255,7 +255,7 @@ define(function (require, exports, module) {
                     entry;
 
                 runs(function () {
-                    var found = testWindow.$(".jstree-brackets span:contains(\".git\")").length;
+                    var found = testWindow.$(".jstree-synthax span:contains(\".git\")").length;
                     expect(found).toBe(0);
                 });
 
@@ -293,8 +293,8 @@ define(function (require, exports, module) {
                 waits(500);
 
                 runs(function () {
-                    var found = testWindow.$(".jstree-brackets span:contains(\".git\")").length,
-                        sanity = testWindow.$(".jstree-brackets span:contains(\"file\") + span:contains(\".js\")").length;
+                    var found = testWindow.$(".jstree-synthax span:contains(\".git\")").length,
+                        sanity = testWindow.$(".jstree-synthax span:contains(\"file\") + span:contains(\".js\")").length;
                     expect(sanity).toBe(1);
                     expect(found).toBe(0);
                 });

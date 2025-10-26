@@ -18,10 +18,10 @@ var cloudfront = new AWS.CloudFront();
 var invalidationPath;
 var distribution;
 if (process.env.TRAVIS_BRANCH === 'master') {
-  invalidationPath = '/bramble/staging/dist/*'
+  invalidationPath = '/synthax/staging/dist/*'
   distribution = 'staging';
 } else {
-  invalidationPath = '/bramble/production/dist/*'
+  invalidationPath = '/synthax/production/dist/*'
   distribution = 'production';
 }
 

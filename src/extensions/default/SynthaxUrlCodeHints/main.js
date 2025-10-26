@@ -46,7 +46,7 @@ define(function (require, exports, module) {
 
         Data            = require("text!data.json"),
 
-        brambleUrlHints,
+        synthaxUrlHints,
         data,
         htmlAttrs,
         styleModes      = ["css", "text/x-less", "text/x-scss"];
@@ -56,7 +56,7 @@ define(function (require, exports, module) {
     /**
      * @constructor
      */
-    function BrambleUrlCodeHints() {}
+    function SynthaxUrlCodeHints() {}
 
     /**
      * Helper function to create a list of urls to existing files based on the query.
@@ -64,7 +64,7 @@ define(function (require, exports, module) {
      *
      * @return {Array.<string>|$.Deferred} The (possibly deferred) hints.
      */
-    BrambleUrlCodeHints.prototype._getUrlList = function (query) {
+    SynthaxUrlCodeHints.prototype._getUrlList = function (query) {
         var doc,
             docDir,
             queryDir = "",
@@ -271,7 +271,7 @@ define(function (require, exports, module) {
      * @return (Array.<string>|$.Deferred)
      * The (possibly deferred) hints and the sort function to use on thise hints.
      */
-    BrambleUrlCodeHints.prototype._getUrlHints = function (query) {
+    SynthaxUrlCodeHints.prototype._getUrlHints = function (query) {
         var hints = [];
 
         // Do not show hints after "?" in url
@@ -302,7 +302,7 @@ define(function (require, exports, module) {
      * the given editor context and, in case implicitChar is non-null,
      * whether it is appropriate to do so.
      */
-    BrambleUrlCodeHints.prototype.hasHints = function (editor, implicitChar) {
+    SynthaxUrlCodeHints.prototype.hasHints = function (editor, implicitChar) {
         var mode = editor.getModeForSelection();
         if (mode === "html") {
             return this.hasHtmlHints(editor, implicitChar);
@@ -329,7 +329,7 @@ define(function (require, exports, module) {
      * the given editor context and, in case implicitChar is non-null,
      * whether it is appropriate to do so.
      */
-    BrambleUrlCodeHints.prototype.hasCssHints = function (editor, implicitChar) {
+    SynthaxUrlCodeHints.prototype.hasCssHints = function (editor, implicitChar) {
         this.editor = editor;
         var cursor = this.editor.getCursorPos();
 
@@ -384,7 +384,7 @@ define(function (require, exports, module) {
      * the given editor context and, in case implicitChar is non-null,
      * whether it is appropriate to do so.
      */
-    BrambleUrlCodeHints.prototype.hasHtmlHints = function (editor, implicitChar) {
+    SynthaxUrlCodeHints.prototype.hasHtmlHints = function (editor, implicitChar) {
         var tagInfo,
             query,
             tokenType;
@@ -458,7 +458,7 @@ define(function (require, exports, module) {
      * 4. handleWideResults, a boolean (or undefined) that indicates whether
      *    to allow result string to stretch width of display.
      */
-    BrambleUrlCodeHints.prototype.getHints = function (key) {
+    SynthaxUrlCodeHints.prototype.getHints = function (key) {
         var mode = this.editor.getModeForSelection(),
             cursor = this.editor.getCursorPos(),
             filter = "",
@@ -585,7 +585,7 @@ define(function (require, exports, module) {
      * Indicates whether the manager should follow hint insertion with an
      * additional explicit hint request.
      */
-    BrambleUrlCodeHints.prototype.insertHint = function (completion) {
+    SynthaxUrlCodeHints.prototype.insertHint = function (completion) {
         var that = this;
 
         function insert(text) {
@@ -635,7 +635,7 @@ define(function (require, exports, module) {
      * @return {number}
      * Number of characters between 2 positions
      */
-    BrambleUrlCodeHints.prototype.getCharOffset = function (array, pos1, pos2) {
+    SynthaxUrlCodeHints.prototype.getCharOffset = function (array, pos1, pos2) {
         var i, count = 0;
 
         if (pos1.index === pos2.index) {
@@ -672,7 +672,7 @@ define(function (require, exports, module) {
      * @return {{index: number, offset: number}}
      * Index of array, and offset in string where char found.
      */
-    BrambleUrlCodeHints.prototype.findNextPosInArray = function (array, ch, pos) {
+    SynthaxUrlCodeHints.prototype.findNextPosInArray = function (array, ch, pos) {
         var i, o, searchOffset;
         for (i = pos.index; i < array.length; i++) {
             // Only use offset on index, then offset of 0 after that
@@ -696,7 +696,7 @@ define(function (require, exports, module) {
      * Indicates whether the manager should follow hint insertion with an
      * additional explicit hint request.
      */
-    BrambleUrlCodeHints.prototype.insertCssHint = function (completion) {
+    SynthaxUrlCodeHints.prototype.insertCssHint = function (completion) {
         var cursor = this.editor.getCursorPos(),
             start  = { line: cursor.line, ch: cursor.ch },
             end    = { line: cursor.line, ch: cursor.ch };
@@ -800,7 +800,7 @@ define(function (require, exports, module) {
      * Indicates whether the manager should follow hint insertion with an
      * additional explicit hint request.
      */
-    BrambleUrlCodeHints.prototype.insertHtmlHint = function (completion) {
+    SynthaxUrlCodeHints.prototype.insertHtmlHint = function (completion) {
         var cursor = this.editor.getCursorPos(),
             start = {line: -1, ch: -1},
             end = {line: -1, ch: -1},
@@ -871,23 +871,23 @@ define(function (require, exports, module) {
     // In the case that we have cached results for an image type url
     // and now we need something else, clear the cache
     function _maybeClearCachedHints() {
-        if(!(brambleUrlHints && brambleUrlHints.cachedHints)) {
+        if(!(synthaxUrlHints && synthaxUrlHints.cachedHints)) {
             return;
         }
 
-        if(brambleUrlHints.imageUrl !== brambleUrlHints.cachedHints.imageUrl) {
-            brambleUrlHints.cachedHints = null;
+        if(synthaxUrlHints.imageUrl !== synthaxUrlHints.cachedHints.imageUrl) {
+            synthaxUrlHints.cachedHints = null;
         }
     }
 
     function _clearCachedHints() {
         // Verify cache exists and is not deferred
-        if (brambleUrlHints && brambleUrlHints.cachedHints && brambleUrlHints.cachedHints.deferred &&brambleUrlHints.cachedHints.deferred.state() !== "pending") {
+        if (synthaxUrlHints && synthaxUrlHints.cachedHints && synthaxUrlHints.cachedHints.deferred &&synthaxUrlHints.cachedHints.deferred.state() !== "pending") {
 
             // Cache may or may not be stale. Main benefit of cache is to limit async lookups
             // during typing. File tree updates cannot happen during typing, so it's probably
             // not worth determining whether cache may still be valid. Just delete it.
-            brambleUrlHints.cachedHints = null;
+            synthaxUrlHints.cachedHints = null;
         }
     }
 
@@ -895,8 +895,8 @@ define(function (require, exports, module) {
         data            = JSON.parse(Data);
         htmlAttrs       = data.htmlAttrs;
 
-        brambleUrlHints = new BrambleUrlCodeHints();
-        CodeHintManager.registerHintProvider(brambleUrlHints, ["css", "html", "less", "scss"], 100);
+        synthaxUrlHints = new SynthaxUrlCodeHints();
+        CodeHintManager.registerHintProvider(synthaxUrlHints, ["css", "html", "less", "scss"], 100);
 
         FileSystem.on("change", _clearCachedHints);
         FileSystem.on("rename", _clearCachedHints);

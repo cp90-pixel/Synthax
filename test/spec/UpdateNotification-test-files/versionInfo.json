@@ -3,8 +3,8 @@
         "buildNumber": 93,
         "versionString": "Sprint 12",
         "dateString": "8-13-2012",
-        "releaseNotesURL": "https://github.com/adobe/brackets/wiki/Release-Notes:-Sprint-12",
-        "downloadURL": "https://github.com/adobe/brackets/downloads",
+        "releaseNotesURL": "https://github.com/mozilla/synthax/wiki/Release-Notes:-Sprint-12",
+        "downloadURL": "https://github.com/mozilla/synthax/downloads",
         "newFeatures": [
             {
                 "name": "Code Completion for HTML Attributes",
@@ -24,8 +24,8 @@
         "buildNumber": 72,
         "versionString": "Sprint 11",
         "dateString": "7-20-2012",
-        "releaseNotesURL": "https://github.com/adobe/brackets/wiki/Release-Notes:-Sprint-11",
-        "downloadURL": "https://github.com/adobe/brackets/downloads",
+        "releaseNotesURL": "https://github.com/mozilla/synthax/wiki/Release-Notes:-Sprint-11",
+        "downloadURL": "https://github.com/mozilla/synthax/downloads",
         "newFeatures": [
             {
                 "name": "Code Completion for HTML Tags",
@@ -33,7 +33,7 @@
             },
             {
                 "name": "CEF3 Shell Enhancements",
-                "description": "Fix bugs and get most unit tests passing in the experimental new shell, based on Chromium Embedding Framework 3 (Brackets currently uses CEF 1)."
+                "description": "Fix bugs and get most unit tests passing in the experimental new shell, based on Chromium Embedding Framework 3 (Synthax currently uses CEF 1)."
             },
             {
                 "name": "Performance Improvements",
@@ -45,8 +45,8 @@
         "buildNumber": 56,
         "versionString": "Sprint 10",
         "dateString": "6-25-2012",
-        "releaseNotesURL": "https://github.com/adobe/brackets/wiki/Release-Notes:-Sprint-10",
-        "downloadURL": "https://github.com/adobe/brackets/downloads",
+        "releaseNotesURL": "https://github.com/mozilla/synthax/wiki/Release-Notes:-Sprint-10",
+        "downloadURL": "https://github.com/mozilla/synthax/downloads",
         "newFeatures": [
             {
                 "name": "JavaScript Quick Edit",

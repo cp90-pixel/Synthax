@@ -40,7 +40,7 @@ define(function (require, exports, module) {
         UrlParams           = require("utils/UrlParams").UrlParams,
         LanguageManager     = require("language/LanguageManager");
 
-    var TEST_PREFERENCES_KEY    = "com.adobe.brackets.test.preferences",
+    var TEST_PREFERENCES_KEY    = "com.mozilla.synthax.test.preferences",
         EDITOR_USE_TABS         = false,
         EDITOR_SPACE_UNITS      = 4,
         OPEN_TAG                = "{{",

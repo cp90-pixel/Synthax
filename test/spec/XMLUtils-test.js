@@ -36,7 +36,7 @@ define(function (require, exports, module) {
         testContent =   "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
                         "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n" +
                         "     width=\"200\" height=\"200\" preserveAspectRatio=\"xMinYMin meet\">\n" +
-                        "    <title>Brackets SVG Code Hints</title>\n" +
+                        "    <title>Synthax SVG Code Hints</title>\n" +
                         "    <rect width=\"200\" height=\"200\" baseline-shift=\"baseline\" alignment-baseline=\"alphabetic\" stroke-width=\"1\"></rect>\n" +
                         "    <rect width='160' height='160' x='20' y='20' baseline-shift='super' alignment-baseline='baseline' />\n" +
                         "    <g>\n" +

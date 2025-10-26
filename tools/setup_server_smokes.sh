@@ -3,7 +3,7 @@
 # Make sure the server root folder was passed in and is valid
 if [[ ${1} == "" ]]; then
   echo "Usage: setup_server_smokes.sh <server-root-path>"
-  echo "Setup local server to access Brackets server smoke test files from GitHub"
+  echo "Setup local server to access Synthax server smoke test files from GitHub"
   echo ""
   echo "Parameters: server-root-path - local file path to server root folder"
   echo "Example: ./setup_server_smokes.sh \"/Library/WebServer/Documents\""
@@ -36,4 +36,4 @@ fi
 # Make new symlink
 ln -s "$server_test_dir" "${1}/server-tests" || exit 1;
 
-echo "Local server now has access to Brackets server-tests smoke test files"
+echo "Local server now has access to Synthax server-tests smoke test files"

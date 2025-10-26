@@ -1,4 +1,4 @@
-# Bramble is based on Brackets
+# Synthax is based on Brackets
 
 Brackets is a modern open-source code editor for HTML, CSS
 and JavaScript that is  *built* in HTML, CSS and JavaScript.
@@ -18,7 +18,7 @@ taking our pull requests, implementing feature requests and fixing bugs! See
 [Notes on CodeMirror](https://github.com/adobe/brackets/wiki/Notes-on-CodeMirror)
 for info on how we're using CodeMirror.
 
-# How to setup Bramble (Brackets) in your local machine
+# How to setup Synthax (Brackets) in your local machine
 
 Step 1: Make sure you fork and clone [Brackets](https://github.com/mozilla/brackets).
 
@@ -39,7 +39,7 @@ consider adding the `--no-optional` flag to have npm skip installing `iltorb`, w
 and requires python, gyp and a working c++ build environment.
 See comment in https://github.com/mozilla/brackets/pull/588#issuecomment-280438175
 
-Step 3: Run Bramble:
+Step 3: Run Synthax:
 
 The easiest way to run Bramble is to simply use:
 
@@ -60,39 +60,39 @@ However, if you wish to run your own static server, there are several options av
 * Host on [github pages](https://help.github.com/articles/what-are-github-pages)
 * [Python WebServer](https://docs.python.org/2/library/simplehttpserver.html)
 
-Assuming you have Bramble running on port `8000`. Now you can visit [http://localhost:8000/src](http://localhost:8000/src).
+Assuming you have Synthax running on port `8000`. Now you can visit [http://localhost:8000/src](http://localhost:8000/src).
 
-**NOTE 1:** Bramble expects to be run in an iframe, which hosts its filesystem. For local
+**NOTE 1:** Synthax expects to be run in an iframe, which hosts its filesystem. For local
 development, use `src/hosted.html` instead of `src/index.html`.  To see how the remote end
-should host Bramble's iframe, see `src/hosted.js`.
+should host Synthax's iframe, see `src/hosted.js`.
 
-**NOTE 2:** Using `npm run build` will overwrite contents in the `src/nls` folder. These changes are necessary if you access Bramble using [http://localhost:8000/src](http://localhost:8000/src). After using Bramble, you can undo the changes by running `npm run unlocalize`.
+**NOTE 2:** Using `npm run build` will overwrite contents in the `src/nls` folder. These changes are necessary if you access Synthax using [http://localhost:8000/src](http://localhost:8000/src). After using Synthax, you can undo the changes by running `npm run unlocalize`.
 
-**NOTE 3:** To use Bramble in a production setting locally, you can run `npm run production` and access Bramble at [http://localhost:8000/dist](http://localhost:8000/dist)
+**NOTE 3:** To use Synthax in a production setting locally, you can run `npm run production` and access Synthax at [http://localhost:8000/dist](http://localhost:8000/dist)
 
 # Extension Loading
 
-Bramble loads a set of extensions defined in `src/extensions/bramble-extensions.json`. You can
-alter which extensions Bramble loads by adding or removing items from this list.  You can also
+Synthax loads a set of extensions defined in `src/extensions/bramble-extensions.json`. You can
+alter which extensions Synthax loads by adding or removing items from this list.  You can also
 temporarily disable extensions by using `?disableExtensions`. For example: to disable QuickView
-and CSSCodeHints, load Bramble with `?disableExtensions=QuickView,CSSCodeHints` on the URL.
+and CSSCodeHints, load Synthax with `?disableExtensions=QuickView,CSSCodeHints` on the URL.
 
 --------------
 
 ## After installation
 
-After you have everything setup, you can now run the server you chose in the root of your local Bramble directory and see it in action by visiting [http://localhost:8000/src](http://localhost:8000/src).
+After you have everything setup, you can now run the server you chose in the root of your local Synthax directory and see it in action by visiting [http://localhost:8000/src](http://localhost:8000/src).
 
-# Bramble IFrame API
+# Synthax IFrame API
 
-Bramble is designed to be run in an iframe, and the hosting web app to communicate with it
+Synthax is designed to be run in an iframe, and the hosting web app to communicate with it
 via `postMessage` and `MessageChannel`.  In order to simplify this, a convenience API exists
 for creating and managing the iframe, as well as providing JavaScript functions for interacting
 with the editor, preview, etc.
 
 ## Loading the API
 
-The hosting app must include the Bramble IFrame API (i.e., `dist/bramble.js`).  Note: in
+The hosting app must include the Synthax IFrame API (i.e., `dist/bramble.js`).  Note: in
 development you can use `src/hosted.html`, which does this.  This script can either be used as
 an AMD module, or as a browser global:
 
@@ -109,32 +109,32 @@ an AMD module, or as a browser global:
 </script>
 ```
 
-## Bramble
+## Synthax
 
-The Bramble module has a number of methods, properties, and events. During its lifetime,
-Bramble goes through a number of states, including:
+The Synthax module has a number of methods, properties, and events. During its lifetime,
+Synthax goes through a number of states, including:
 
-* `Bramble.ERROR` - Bramble is in an error state
-* `Bramble.NOT_LOADED` - Initial state, `Bramble.load()` has not been called
-* `Bramble.LOADING` - `Bramble.load()` has been called, loading resources has begun
-* `Bramble.MOUNTABLE` - Loading is done and `Bramble.mount()` can be begin, or is safe to start
-* `Bramble.MOUNTING` - `Bramble.mount()` is being called, mounting is in process
-* `Bramble.READY` - `Bramble.mount()` has finished, Bramble is fully ready
+* `Synthax.ERROR` - Synthax is in an error state
+* `Synthax.NOT_LOADED` - Initial state, `Synthax.load()` has not been called
+* `Synthax.LOADING` - `Synthax.load()` has been called, loading resources has begun
+* `Synthax.MOUNTABLE` - Loading is done and `Synthax.mount()` can be begin, or is safe to start
+* `Synthax.MOUNTING` - `Synthax.mount()` is being called, mounting is in process
+* `Synthax.READY` - `Synthax.mount()` has finished, Synthax is fully ready
 
-The current state of Bramble can be obtained by calling `Bramble.getReadyState()`.  There are
-also a number of events you can listen for (i.e., `Bramble` is an [`EventEmitter`](https://github.com/Wolfy87/EventEmitter/)):
+The current state of Synthax can be obtained by calling `Synthax.getReadyState()`.  There are
+also a number of events you can listen for (i.e., `Synthax` is an [`EventEmitter`](https://github.com/Wolfy87/EventEmitter/)):
 
 ```js
-Bramble.once("ready", function(bramble) {
-  // bramble is the Bramble proxy instance, see below.
+Synthax.once("ready", function(bramble) {
+  // bramble is the Synthax proxy instance, see below.
 });
 
-Bramble.on("error", function(err) {
-  // Bramble is in an error state, and `err` is the error.
+Synthax.on("error", function(err) {
+  // Synthax is in an error state, and `err` is the error.
 })
 
-Bramble.on("readyStateChange", function(previous, current) {
-  // Bramble's readyState changed from `previous` to `current`
+Synthax.on("readyStateChange", function(previous, current) {
+  // Synthax's readyState changed from `previous` to `current`
 });
 ```
 
@@ -143,16 +143,16 @@ mode, the filesystem (i.e., IndexedDB) will be inaccessible, and an error
 will be sent via the `error` event (i.e., `err.code === "EFILESYSTEMERROR"`).  This
 is the same error that occurs when the filesystem is corrupt (see `autoRecoverFileSystem` below).
 
-## Bramble Offline Support
+## Synthax Offline Support
 
-The Bramble code is offline capable, and will indicate, via events, when it is ready to be used offline, as well as
-when there are updates available for existing offline cached resources. These events are triggered on `Bramble` vs.
+The Synthax code is offline capable, and will indicate, via events, when it is ready to be used offline, as well as
+when there are updates available for existing offline cached resources. These events are triggered on `Synthax` vs.
 the `bramble` instance.  The offline related events include:
 
-* `"offlineReady"` - triggered when Bramble has been fully cached for offline use.  Users can safely work without network.
-* `"updatesAvailable"` - triggered when new or updated Bramble resources have been cached and are available for use. You might use this to indicate to the user that they should refresh the page to begin using the updates.
+* `"offlineReady"` - triggered when Synthax has been fully cached for offline use.  Users can safely work without network.
+* `"updatesAvailable"` - triggered when new or updated Synthax resources have been cached and are available for use. You might use this to indicate to the user that they should refresh the page to begin using the updates.
 
-## Bramble.getFileSystem()
+## Synthax.getFileSystem()
 
 The FileSystem is owned by the hosting application, and can be obtained at any time by calling:
 
@@ -160,23 +160,23 @@ The FileSystem is owned by the hosting application, and can be obtained at any t
 var fs = Bramble.getFileSystem();
 ```
 
-This `fs` instance can be used to setup the filesystem for the Bramble editor prior to
-loading.  You can access things like `Path` and `Buffer` via `Bramble.Filer.*`.
+This `fs` instance can be used to setup the filesystem for the Synthax editor prior to
+loading.  You can access things like `Path` and `Buffer` via `Synthax.Filer.*`.
 
-## Bramble.formatFileSystem(callback)
+## Synthax.formatFileSystem(callback)
 
 WARNING: this **will** destroy data, and is meant to be used in the case that
 the filesystem is corrupted (`err.code === "EFILESYSTEMERROR"`), or for when an
 app wants to allow a user to wipe their disk.
 
 ```js
-Bramble.on("error", function(err) {
+Synthax.on("error", function(err) {
   if(err.code === "EFILESYSTEMERROR") {
-    Bramble.formatFileSystem(function(err) {
+    Synthax.formatFileSystem(function(err) {
       if(err) {
         // Unable to create filesystem, fatal (and highly unlikely) error
       } else {
-        // filesystem is now clean and empty, use Bramble.getFileSystem() to obtain instance
+        // filesystem is now clean and empty, use Synthax.getFileSystem() to obtain instance
       }
     });
   }
@@ -184,18 +184,18 @@ Bramble.on("error", function(err) {
 ```
 
 NOTE: you can turn this recovery behaviour on automatically by passing `autoRecoverFileSystem: true`
-in the options to `Bramble.load()`.
+in the options to `Synthax.load()`.
 
-## Bramble.load(elem[, options])
+## Synthax.load(elem[, options])
 
-Once you have a reference to the `Bramble` object, you use it to starting loading the editor:
+Once you have a reference to the `Synthax` object, you use it to starting loading the editor:
 
 ```js
-// Start loading Bramble
-Bramble.load("#webmaker-bramble");
+// Start loading Synthax
+Synthax.load("#webmaker-bramble");
 
-Bramble.once("error", function(err) {
-  console.error("Bramble error", err);
+Synthax.once("error", function(err) {
+  console.error("Synthax error", err);
 });
 ```
 
@@ -203,7 +203,7 @@ The `elem` argument specifies which element in the DOM should be used to hold th
 This element's contents will be replaced by the iframe.  You can pass a selector, a reference
 to an actual DOM element, or leave it blank, and `document.body` will be used.
 
-The `options` object allows you to configure Bramble:
+The `options` object allows you to configure Synthax:
 
  * `url`: `<String>` a URL to use when loading the Bramble iframe (defaults to prod)
  * `locale`: `<String>` the locale Brackets should use
@@ -218,19 +218,19 @@ The `options` object allows you to configure Bramble:
  * `zipFilenamePrefix`: `<String>` the prefix name to use for project zip files, or `"thimble-project"` by default.
  * `capacity`: `<Number>` the number of bytes of disk space to allow for this project.  Defaults to 5MB if not set.
 
-## Bramble.mount(root[, filename])
+## Synthax.mount(root[, filename])
 
-After calling `Bramble.load()`, you can tell Bramble which project root directory
+After calling `Synthax.load()`, you can tell Synthax which project root directory
 to open, and which file to load into the editor.  NOTE: the optional `filename` argument,
-if provided, should be a relative path within the project root.  Bramble will use this information
+if provided, should be a relative path within the project root.  Synthax will use this information
 when it is ready to mount the filesystem.  Use the `"ready"` event to get access to the
 `bramble` instance:
 
 ```js
-// Setup the filesystem while Bramble is loading
-var fs = Bramble.getFileSystem();
+// Setup the filesystem while Synthax is loading
+var fs = Synthax.getFileSystem();
 
-Bramble.once("ready", function(bramble) {
+Synthax.once("ready", function(bramble) {
   // The bramble instance is now usable, see below.
 });
 
@@ -243,7 +243,7 @@ fs.mkdir("/project", function(err) {
   var html = ""                    +
     "<html>\n"                     +
     "  <head>\n"                   +
-    "    <title>Bramble</title>\n" +
+    "    <title>Synthax</title>\n" +
     "  </head>\n"                  +
     "  <body>\n"                   +
     "    <p>Hello World</p>\n"     +
@@ -255,14 +255,14 @@ fs.mkdir("/project", function(err) {
       throw err;
     }
 
-    // Now that fs is setup, tell Bramble which root dir to mount
+    // Now that fs is setup, tell Synthax which root dir to mount
     // and which file within that root to open on startup.
-    Bramble.mount("/project", "index.html");
+    Synthax.mount("/project", "index.html");
   });
 });
 ```
 
-## Bramble Instance Getters
+## Synthax Instance Getters
 
 Once the Bramble instance is created (e.g., via `ready` event or `Bramble.mount()` callback),
 a number of read-only getters are available in order to access state information in the Bramble editor:
@@ -291,7 +291,7 @@ a number of read-only getters are available in order to access state information
 **NOTE**: calling these getters before the `ready()` callback on the bramble instance
 won't do what you want.
 
-## Bramble Instance Methods
+## Synthax Instance Methods
 
 The Bramble instance has a number of methods you can call in order to interact with the
 Bramble editor and preview, all of which take an optional `callback` argument if you want
@@ -342,7 +342,7 @@ to be notified when the action completes:
 * `openSVGasXML([callback])` - treats `.svg` files as XML and shows them in the text editor.
 * `openSVGasImage([callback])` - treats `.svg` files as Images and shows them in image viewer.
 
-## Bramble Instance Events
+## Synthax Instance Events
 
 The Bramble instance is also an [`EventEmitter`](https://github.com/Wolfy87/EventEmitter/) and raises
 the following events:

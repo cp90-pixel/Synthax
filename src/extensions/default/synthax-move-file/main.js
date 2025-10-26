@@ -11,7 +11,7 @@ define(function (require, exports, module) {
     var Strings        = brackets.getModule("strings");
     var MoveToDialog   = require("MoveToDialog");
 
-    var MOVE_FILE = "bramble-move-file.moveFile";
+    var MOVE_FILE = "synthax-move-file.moveFile";
 
     CommandManager.register(Strings.CMD_MOVE_FILE, MOVE_FILE, MoveToDialog.open);
     var menu = Menus.getContextMenu(Menus.ContextMenuIds.PROJECT_MENU);
